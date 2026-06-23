@@ -7,6 +7,7 @@ select
     anchor_year,
     anchor_year_group,
     dod,
+    current_date() as load_date,
 
     {{ patient_status('dod') }} as patient_status,
 
