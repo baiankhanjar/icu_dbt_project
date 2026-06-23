@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: fct_pharmacy_summary
+    description: Patient-level summary of medication utilization and administration patterns.
+
+    columns:
+      - name: subject_id
+        description: Unique patient identifier.
+        tests:
+          - unique
+          - not_null
+
+      - name: total_med_orders
+        description: Total medication orders for the patient.
+
+      - name: unique_medications
+        description: Number of distinct medications prescribed.
+
+      - name: iv_med_orders
+        description: Count of intravenous medication orders.
+
+      - name: infusion_orders
+        description: Count of infusion-based medication orders.

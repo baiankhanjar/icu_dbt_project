@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: icu_raw
+    database: icu-dbt-practice
+    schema: icu_raw
+    tables:
+      - name: raw_patients
+      - name: raw_pharmacy
+      - name: raw_providers
+      - name: raw_lab_events
+      - name: raw_lab_time

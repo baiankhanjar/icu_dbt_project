@@ -1,0 +1,15 @@
+{{ config(materialized='view') }}
+
+select
+    subject_id,
+    {{ standardize_gender('gender') }} as gender,
+    anchor_age,
+    anchor_year,
+    anchor_year_group,
+    dod,
+
+    {{ patient_status('dod') }} as patient_status,
+
+    (anchor_year - anchor_age) as estimated_birth_year
+
+from {{ source('icu_raw', 'raw_patients') }}

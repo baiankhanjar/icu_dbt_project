@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: icu_patient_summary
+    description: Patient-level ICU summary combining demographics, lab risk metrics, and pharmacy utilization.
+
+    columns:
+      - name: subject_id
+        description: Unique patient identifier.
+        tests:
+          - unique
+          - not_null
+
+      - name: gender
+        description: Patient gender.
+
+      - name: anchor_age
+        description: Patient age at anchor year.
+
+      - name: patient_status
+        description: Alive or deceased based on date of death.
+
+      - name: risk_score
+        description: Lab-based risk score derived from abnormal laboratory results.
+
+      - name: risk_category
+        description: Risk classification based on risk score.

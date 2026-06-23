@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: patient_lab_risk
+    description: Patient-level aggregation of laboratory results and risk scoring.
+
+    columns:
+      - name: subject_id
+        description: Unique patient identifier.
+        tests:
+          - unique
+          - not_null
+
+      - name: total_labs
+        description: Total number of laboratory events.
+
+      - name: high_labs
+        description: Count of laboratory results above the reference range.
+
+      - name: low_labs
+        description: Count of laboratory results below the reference range.
+
+      - name: risk_score
+        description: Risk score calculated from abnormal laboratory results.
+        tests:
+          - not_negative:
+              arguments:
+                column_name: risk_score

@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_patients
+    description: Clean patient demographic data from the ICU patient source table.
+
+    columns:
+      - name: subject_id
+        description: Unique patient identifier.
+
+        tests:
+          - not_null
+          - unique
+
+      - name: gender
+        description: Patient gender.
+
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Male', 'Female', 'Unknown']
+
+      - name: anchor_age
+        description: Patient age at the anchor year.
+
+      - name: anchor_year
+        description: Reference year assigned to the patient.
+
+      - name: anchor_year_group
+        description: Grouped range of anchor years.
+
+      - name: dod
+        description: Date of death. Null indicates the patient was alive at the time of data extraction.
+
+      - name: patient_status
+        description: Derived patient status based on date of death (alive or deceased).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['alive', 'deceased']

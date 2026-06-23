@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_pharmacy
+    columns:
+
+      - name: pharmacy_id
+        tests:
+          - not_null
+          - unique
+
+      - name: subject_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: subject_id
+
+      - name: medication
+        tests:
+          - not_null
+
+      - name: proc_type
+        tests:
+          - not_null

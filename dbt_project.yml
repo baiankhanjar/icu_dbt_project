@@ -1,0 +1,22 @@
+name: 'icu_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'jaffle_shop'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  icu_project:
+    +materialized: view
+
+vars:
+  senior_age: 65

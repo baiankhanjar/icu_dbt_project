@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_lab_events
+    columns:
+
+      - name: labevent_id
+        tests:
+          - not_null
+          - unique
+
+      - name: subject_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: subject_id
+
+      - name: lab_status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['high', 'low', 'normal', 'no_numeric_value']
