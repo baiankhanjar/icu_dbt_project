@@ -14,7 +14,7 @@ pharmacy as (
 )
 
 select
-    p.subject_id as patient_key,
+    {{ dbt_utils.generate_surrogate_key(['p.subject_id']) }} as patient_key, 
 
     p.subject_id,
     p.gender,
