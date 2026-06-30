@@ -85,7 +85,7 @@ Metrics:
 
 Used dbt-utils:
 
-{{ dbt_utils.generate_surrogate_key(['subject_id']) }}
+dbt_utils.generate_surrogate_key(['subject_id'])
 
 Purpose:
 - Unique patient identifiers
@@ -191,8 +191,11 @@ End-to-end analytics engineering pipeline including:
 
 ---
 
-## 15. Dashboard & Architecture (ADD IMAGES)
+## 15. Dashboard & Architecture
 
+### ICU Patient Clinical Dashboard
+This dashboard shows ICU patient risk distribution, lab severity, and medication usage patterns.
+<img width="1301" height="732" alt="image" src="https://github.com/user-attachments/assets/0fcaeddf-0e42-4444-8fd0-97d2aaaa3726" />
 
 
 ## 16. How to Run
