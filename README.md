@@ -42,7 +42,7 @@ Transformations:
 
 ---
 
-### Star Schema Design
+### ⭐ Star Schema Design
 
 This project follows a **star schema architecture** to organize ICU healthcare data for analytics.
 
@@ -139,9 +139,28 @@ from {{ source('icu_raw', 'raw_patients') }}
 
 ---
 
-### DAG (Lineage Graph)
+### dbt DAG (Dependency Graph)
 
-Raw → Staging → Marts → Dashboard
+dbt automatically builds a Directed Acyclic Graph (DAG) based on `ref()` dependencies.
+
+In this project, the DAG structure is:
+
+raw sources → staging models → mart models → dashboard layer
+
+Key dependency flow:
+- stg_patients → icu_patient_summary
+- stg_lab_events → patient_lab_risk
+- stg_pharmacy → fct_pharmacy_summary
+- All marts → icu_dashboard outputs
+
+---
+
+### Why DAG is important
+
+- Ensures correct execution order of transformations
+- Prevents broken dependencies in data pipelines
+- Enables modular and scalable SQL development
+- Allows dbt to automatically track lineage and dependencies
 
 ---
 
