@@ -89,3 +89,96 @@ Used `dbt-utils` package:
 
 ```sql
 {{ dbt_utils.generate_surrogate_key(['subject_id']) }}
+
+Purpose of surrogate keys:
+Ensure unique patient identifiers
+Improve join consistency
+Avoid reliance on raw business keys
+
+
+6. dbt Core Concepts Applied
+🔹 ref()
+
+Used for model dependencies:
+
+from {{ ref('stg_patients') }}
+
+Enables automatic DAG creation and modular SQL.
+
+🔹 source()
+
+Used for raw data ingestion:
+
+from {{ source('icu_raw', 'raw_patients') }}
+🔹 DAG (Lineage Graph)
+
+dbt automatically manages dependencies:
+
+Raw → Staging → Marts → Dashboard
+7. Model Execution
+dbt run
+
+Executes transformations and builds models in BigQuery.
+
+Git vs dbt
+Git → version control (code only)
+dbt → executes transformations
+BigQuery → stores final data
+8. Git Workflow
+
+Standard workflow implemented:
+
+git add .
+git commit -m "update models"
+git push
+9. Data Quality & Testing
+
+Implemented dbt tests:
+
+unique
+not_null
+relationships
+accepted_values
+
+Ensures reliability of healthcare data models.
+
+10. Documentation Layer
+
+Each model includes:
+
+descriptions
+column-level documentation
+business definitions (e.g., risk_score, patient_status)
+
+This effectively creates a mini data catalog.
+
+11. Model Selection (dbt Commands)
+
+Used selective execution for efficiency:
+
+dbt run --select model
+dbt run --select +model
+dbt run --select model+
+12. BigQuery Integration
+dbt builds views and tables in BigQuery
+surrogate keys appear as hashed identifiers
+data refresh occurs only when dbt runs
+13. Key Outcome
+
+Successfully built an end-to-end analytics engineering pipeline for ICU healthcare data, including:
+
+Modular dbt transformations
+Risk scoring system
+Data quality testing
+DAG-based orchestration
+BigQuery deployment
+Git version control
+Power BI dashboard integration
+14. Final Business Impact
+
+This project enables:
+
+Patient risk stratification (low / medium / high)
+Clinical severity analysis (lab abnormalities)
+Medication usage tracking
+ICU patient population insights
