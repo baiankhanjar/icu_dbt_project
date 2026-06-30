@@ -42,6 +42,35 @@ Transformations:
 
 ---
 
+### Star Schema Design
+
+This project follows a **star schema architecture** to organize ICU healthcare data for analytics.
+
+#### Fact Table (Central Measurements)
+- fct_pharmacy_summary
+  - total_med_orders
+  - iv_med_orders
+  - infusion_orders
+  - medication usage metrics
+
+#### Dimension Tables (Descriptive Context)
+- stg_patients → patient demographics
+- stg_lab_events → lab measurements & risk indicators
+- stg_pharmacy → medication reference data
+
+#### Analytical Hub Table
+- icu_patient_summary
+  - joins patient + lab + pharmacy data at patient level
+  - enables patient-level analytics and risk stratification
+
+#### Why this matters
+- Separates facts (events) from dimensions (context)
+- Improves scalability and query performance
+- Standard analytics engineering modeling approach
+- Enables clean BI reporting layer
+
+---
+
 ### Mart Layer (Business Logic)
 Final analytics-ready models:
 - icu_patient_summary
@@ -195,8 +224,10 @@ End-to-end analytics engineering pipeline including:
 
 ### ICU Patient Clinical Dashboard
 This dashboard shows ICU patient risk distribution, lab severity, and medication usage patterns.
+
 <img width="1301" height="732" alt="image" src="https://github.com/user-attachments/assets/0fcaeddf-0e42-4444-8fd0-97d2aaaa3726" />
 
+---
 
 ## 16. How to Run
 
