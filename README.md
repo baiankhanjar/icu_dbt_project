@@ -42,7 +42,7 @@ Transformations:
 
 ---
 
-### ⭐ Star Schema Design
+### Star Schema Design
 
 This project follows a **star schema architecture** to organize ICU healthcare data for analytics.
 
